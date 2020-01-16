@@ -1,0 +1,73 @@
+.select2-selection.select2-selection--single {
+    width: 100%;
+    height: calc(1.5em + .75rem + 2px);
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__rendered {
+    line-height: unset !important;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__arrow {
+    height: 35px !important;
+}
+
+.scroll {
+    max-height: 500px;
+    overflow-y: auto;
+}
+
+label.error {
+    color: #ec0000;
+}
+
+input.error,
+select.error,
+textarea.error {
+    border: 1px solid #ec0000;
+}
+
+.err {
+    color: #ec0000;
+}
+
+.wd-100p {
+    width: 100%;
+}
+
+.mrg-t20px {
+    margin-top: 20px;
+}
+
+.mrg-b20px {
+    margin-bottom: 20px;
+}
+
+.m-tb10px {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.txt-c {
+    text-align: center;
+}
+
+.dataTables_wrapper {
+    margin-top: 10px;
+}
+
+.hide {
+    display: none;
+}
+
+table.dataTable {
+    width: 100% !important;
+}
