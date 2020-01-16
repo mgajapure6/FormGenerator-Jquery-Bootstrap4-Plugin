@@ -1,12 +1,11 @@
 # Form Generator Jquery Bootstrap 4 Plugin
 #### How to make form #
 pass the option object with following key value pairs
-html code :
-<div class="container mrg-t20px mrg-b20px">
-  <div id="form"></div>
-</div>
-
-Javascript code : 
+```html code :
+```<div class="container mrg-t20px mrg-b20px">
+``` <div id="form"></div>
+```</div>
+```Javascript code : 
 $('#form').formGenerator({
   rows:[
     {
@@ -38,3 +37,4 @@ $('#form').formGenerator({
     ]
   ]
 });
+```
