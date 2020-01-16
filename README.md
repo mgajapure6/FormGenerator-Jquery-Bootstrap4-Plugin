@@ -4,7 +4,7 @@
 
 - [About](#about)
 - [Getting Started](#getting_started)
-- [Usage](#usage)
+- [Examples](#example)
 
 ## About <a name = "about"></a>
 
@@ -53,6 +53,6 @@ until finished
 
 End with an example of getting some data out of the system or using it for a little demo.
 
-## Usage <a name = "usage"></a>
+## Examples <a name = "example"></a>
 
 Add notes about how to use the system.
