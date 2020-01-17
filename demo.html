@@ -12,11 +12,14 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.12/css/select2.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css">
-    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="">
+    <link rel="stylesheet" href="">
+    <link rel="stylesheet" href="formGenerator.css">
+
 </head>
 
 <body>
-    <div class="container mrg-t20px mrg-b20px">
+    <div class="container mt-5">
         <div id="form"></div>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -27,25 +30,56 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
-    <script src="index.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-steps/1.1.0/jquery.steps.min.js"></script>
+    <script src="formGenerator.js"></script>
     <script>
         var dtData = [];
         for (var i = 1; i <= 5000; i++) {
             dtData.push([i, 'Name ' + i, 'Action ' + i, 7, 9, 0])
         }
 
-        $('#form').formGenerator({
+        var options = {
             // These are the defaults.
-            saveFunctionName: 'saveData()',
+            title: 'New Form',
             rows: [{
-                el: 'h4',
-                text: 'Form Example....!'
+                els: [{
+                    tag: 'h4',
+                    html: 'Form Example....!'
+                }, {
+                    tag: 'h5',
+                    html: 'Form Example....!'
+                }, ]
+            }, {
+                el: 'hr'
+            }, {
+                control: {
+                    label: "Input 1",
+                    control: "input",
+                    type: "file",
+                    name: "input1",
+                    class: "",
+                    validation: {
+                        rules: {
+                            required: true,
+                            number: true,
+                            minlength: 5,
+                            maxlength: 10
+                        },
+                        messages: {
+                            required: "Required input",
+                            number: "Only decimal number allowed",
+                            minlength: "Please, enter at least 5 number",
+                            maxlength: "Can not be exceed more than 10 numbers",
+                        }
+                    }
+                }
             }, {
                 controls: [{
                     label: "Input 1",
                     control: "input",
                     type: "text",
                     name: "input1",
+                    disabled: true,
                     class: "",
                     validation: {
                         rules: {
@@ -66,6 +100,7 @@
                     control: "datepicker",
                     type: "text",
                     name: "input2",
+                    readonly: true,
                     class: "",
                     validation: {
                         rules: {
@@ -84,6 +119,7 @@
                     control: "datepicker",
                     class: "",
                     value: "",
+                    readonly: true,
                     name: "datepicker1",
                 }],
             }, {
@@ -110,6 +146,7 @@
                     control: "select2",
                     class: "",
                     name: "select2",
+                    placeholder: "Select Option",
                     data: [{
                         id: 1,
                         text: "Option 1"
@@ -121,8 +158,10 @@
             }, {
                 el: 'hr'
             }, {
-                el: 'h4',
-                text: 'Datatable Example....!'
+                el: {
+                    tag: 'h4',
+                    html: 'Datatable Example....!'
+                },
             }, {
                 tables: [{
                     type: 'datatable',
@@ -130,24 +169,28 @@
                     id: '',
                     colsArr: ['Name'],
                     dataArr: dtData,
-                    // rowAction: {
-                    //     colIndex: 2,
-                    //     buttons: [{
-                    //         name: '<i class="fa fa-edit"></i>',
-                    //         class: 'btn-warning',
-                    //         onclickFunctionName: 'editRow(this)'
-                    //     }, {
-                    //         name: '<i class="fa fa-trash"></i>',
-                    //         class: 'btn-danger',
-                    //         onclickFunctionName: 'deleteRow(this)'
-                    //     }]
-                    // }
+                    rowAction: {
+                        colIndex: 2,
+                        buttons: [{
+                            text: '',
+                            icon_class: 'fa-edit',
+                            class: 'btn-warning',
+                            fnName: 'editRow(this)'
+                        }, {
+                            text: '',
+                            icon_class: 'fa-trash',
+                            class: 'btn-danger',
+                            fnName: 'deleteRow(this)'
+                        }]
+                    }
                 }]
             }, {
                 el: 'hr'
             }, {
-                el: 'h4',
-                text: 'Editable Table Example....!'
+                el: {
+                    tag: 'h4',
+                    html: 'Editable Table Example....!'
+                }
             }, {
                 tables: [{
                     type: 'editable',
@@ -155,7 +198,7 @@
                     id: '',
                     addRow: true,
                     colsArr: ['Input', 'Select', 'Datepicker', 'Select2'],
-                    rowControlArray: [{
+                    controls: [{
                         control: "input",
                         type: "text",
                         name: "tdInput1",
@@ -196,14 +239,100 @@
                     rowAction: {
                         colIndex: 5,
                         buttons: [{
-                            name: '<i class="fa fa-trash"></i>',
+                            text: '',
+                            icon_class: 'fa-trash',
                             class: 'btn-danger',
-                            onclickFunctionName: 'deleteRow(this)'
+                            fnName: 'deleteRow(this)'
                         }]
                     }
                 }]
+            }, {
+                el: 'hr'
+            }, {
+                el: {
+                    tag: 'h4',
+                    html: 'Wizard with steps...'
+                }
+            }, {
+                el: 'hr'
+            }, {
+                wizard: {
+                    config: {
+                        headerTag: "h6",
+                        bodyTag: "section",
+                        transitionEffect: "fade",
+                        titleTemplate: '<span class="step">#index#</span> #title#'
+                    },
+                    steps: [{
+                        title: "Step 1",
+                        sub_title: "Step 1 Information",
+                        rows: [{
+                                controls: [{
+                                    label: "First name",
+                                    control: "input",
+                                    type: "text",
+                                    class: "",
+                                }, {
+                                    label: "Last name",
+                                    control: "input",
+                                    type: "text",
+                                    class: "",
+                                }]
+                            },
+                            // {
+                            //     buttons: [{
+                            //         text: 'Back',
+                            //         icon_class: 'fa-times',
+                            //         class: 'btn-dark',
+                            //         fnName: ''
+                            //     },{
+                            //         text: 'Next',
+                            //         icon_class: 'fa-plus',
+                            //         class: 'btn-primary',
+                            //         fnName: ''
+                            //     }]
+                            // }
+                        ]
+                    }, {
+                        title: "Step 2",
+                        sub_title: "Step 2 Information",
+                        rows: [{
+                                controls: [{
+                                    label: "First name",
+                                    control: "input",
+                                    type: "text",
+                                    class: "",
+                                }, {
+                                    label: "Last name",
+                                    control: "input",
+                                    type: "text",
+                                    class: "",
+                                }]
+                            },
+                            // {
+                            //     buttons: [{
+                            //         text: 'Back',
+                            //         icon_class: 'fa-times',
+                            //         class: 'btn-dark',
+                            //         fnName: ''
+                            //     },{
+                            //         text: 'Next',
+                            //         icon_class: 'fa-plus',
+                            //         class: 'btn-primary',
+                            //         fnName: ''
+                            //     }]
+                            // }
+                        ]
+                    }, {
+                        title: "Step 3",
+                        sub_title: "Step 3 Information"
+                    }],
+
+                }
             }]
-        });
+        }
+
+        $('#form').formGenerator(options);
 
         function editRow(editBtn) {
             console.log('editRow', $(editBtn).closest('td').find('.row-obj').text())
