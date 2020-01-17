@@ -1,4 +1,4 @@
-# Form Generator - Jquery Bootstrap 4 Plugin with Validation
+# Form Generator - Jquery Bootstrap 4
 
 ## Table of Contents
 
@@ -10,7 +10,7 @@
 
 Many developer needs to develop forms for their web application and they spend lots of precious hours on developing such forms.
 
-Forms may contains input fields, select fields, textareas etc. Sometime developer has to inject another jquery plugins to attach datepickers, select2, datatables, validations etc. 
+Forms may contains input fields, select fields, textareas etc. Sometime developer has to inject another jquery plugins to attach datepickers, select2, datatables, validations etc.
 
 This waste to much time of developer to develop one single form in html.
 
